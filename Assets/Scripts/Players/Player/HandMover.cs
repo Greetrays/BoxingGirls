@@ -7,7 +7,7 @@ public class HandMover : MonoBehaviour
     [SerializeField] private float _speed;
 
     private void Update()
-    {
-        _hand.velocity = new Vector3(Mathf.Abs(_joystick.Vertical * _joystick.Horizontal / 2), _joystick.Vertical, _joystick.Horizontal * -1) * _speed;
+    {      
+        _hand.velocity = new Vector3(_joystick.Horizontal, _joystick.Vertical, Mathf.Abs(_joystick.Vertical * _joystick.Horizontal / 2)) * _speed;
     }
 }
