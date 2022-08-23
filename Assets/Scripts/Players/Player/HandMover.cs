@@ -1,0 +1,13 @@
+﻿using UnityEngine;
+
+public class HandMover : MonoBehaviour
+{
+    [SerializeField] private Rigidbody _hand;
+    [SerializeField] private DynamicJoystick _joystick;
+    [SerializeField] private float _speed;
+
+    private void Update()
+    {
+        _hand.velocity = new Vector3(Mathf.Abs(_joystick.Vertical * _joystick.Horizontal / 2), _joystick.Vertical, _joystick.Horizontal * -1) * _speed;
+    }
+}
