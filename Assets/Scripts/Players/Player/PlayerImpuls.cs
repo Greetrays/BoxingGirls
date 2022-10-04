@@ -8,6 +8,7 @@ public class PlayerImpuls : MonoBehaviour
     [SerializeField] private PlayerHealth _player;
     [SerializeField] private PlayerHealth _enemy;
     [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Vector3 _impulseDirection;
 
     private void OnEnable()
     {
@@ -23,11 +24,12 @@ public class PlayerImpuls : MonoBehaviour
 
     private void PlayerHealthChanged(float currentHealt, float maxHealth)
     {
-        _rigidbody.AddForce(new Vector3(0, 0.2f, -1) * _force, ForceMode.Impulse);
+        Vector3 newDirection = new Vector3(_impulseDirection.x, _impulseDirection.y, _impulseDirection.z * -1);
+        _rigidbody.AddForce(newDirection * _force, ForceMode.Impulse);
     }
 
     private void EnemyHealthChanged(float currentHealt, float maxHealth)
     {
-        _rigidbody.AddForce(new Vector3(0, 0.2f, 1) * _force, ForceMode.Impulse);
+        _rigidbody.AddForce(_impulseDirection * _force, ForceMode.Impulse);
     }
 }
